@@ -1,20 +1,31 @@
-import CartWidget from "./CartWidget";
+import React from 'react';
+import { Navbar, Nav, NavDropdown, Container } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import CartWidget from './CartWidget';
 
-const NavBar = ()=>{
-    return(
-        <>
-    <nav className="navbar">
-        <ul className="nav-container">
-            <li><a href="/">Inicio</a></li>
-            <li><a href="/">Productos</a></li>
-            <li><a href="/">Sobre Nosotros</a></li>
-            <li><a href="/">Sucursales</a></li>
-            <li ><a href="/"><CartWidget/></a></li>
-        </ul>
+const NavBar = () => {
 
-    </nav>
-    </>
-    )
+  //const categories = ["electronics","jewelery","men's clothing","women's clothing"]; ---> Categorias de la api
+
+  return (
+    <Navbar bg="light" expand="lg" className='navbar'>
+      <Container fluid>
+        <Navbar.Brand as='span'><Link to='/'>TNG Commerce</Link></Navbar.Brand>
+        <Navbar.Toggle aria-controls="navbar" />
+        <Navbar.Collapse id="navbar">
+          <Nav className="me-auto my-2 my-lg-0">
+            <Link to={'/cart'}><CartWidget /></Link>
+            <NavDropdown title="Categories" id="navbarDropdown">
+              <NavDropdown.Item as='span'><Link to='/category/electronics' >Electronicos</Link></NavDropdown.Item>
+              <NavDropdown.Item as='span'><Link to='/category/jewelery' >Joyeria</Link></NavDropdown.Item>
+              <NavDropdown.Item as='span'><Link to="/category/men's clothing" >Ropa de hombre</Link></NavDropdown.Item>
+              <NavDropdown.Item as='span'><Link to="/category/women's clothing" >Ropa de mujer</Link></NavDropdown.Item>
+            </NavDropdown>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
+  )
 }
 
 export default NavBar;
